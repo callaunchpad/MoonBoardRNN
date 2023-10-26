@@ -17,7 +17,7 @@ from keras.layers import Dense, Activation, Input, LSTM, Reshape, Lambda, Repeat
 from keras import backend as K
 
 cwd = os.getcwd()
-parent_wd = cwd.replace('\model', '')
+parent_wd = cwd.replace('/model', '')
 benchmark_handString_seq_path = parent_wd + '/preprocessing/benchmark_handString_seq_X'
 benchmarkNoGrade_handString_seq_path = parent_wd + '/preprocessing/benchmarkNoGrade_handString_seq_X'
 nonbenchmark_handString_seq_path = parent_wd + '/preprocessing/nonbenchmark_handString_seq_X'
@@ -87,8 +87,8 @@ def loadSeqXYFromString (stringList, holdStr_to_holdIx, m, numOfPossibleHolds, m
        OutPut shape Y (Tx, Training sample, numOfPossibleHolds + "End") = (12, numOfTrainingSample, n_values)
     """
     n_values = numOfPossibleHolds + 1 # including "End"
-    X = np.zeros((m, maxNumOfHands, n_values), dtype=np.bool)
-    Y = np.zeros((m, maxNumOfHands, n_values), dtype=np.bool)
+    X = np.zeros((m, maxNumOfHands, n_values), dtype=bool)
+    Y = np.zeros((m, maxNumOfHands, n_values), dtype=bool)
     for ixOfSample in range(m):
         # Extract a seq like ['J5-LH', 'J5-RH', 'I9-LH', 'J10-RH', 'H12-RH', 'C13-LH', 'D15-LH', 'E18-RH']
         one_Seq = stringList[ixOfSample]
